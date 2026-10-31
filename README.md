@@ -2,7 +2,7 @@
 
 Set your Home Assistant system timezone dynamically using either:
 - A direct [IANA timezone string](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `America/New_York`)
-- Or geographic coordinates (`latitude` and `longitude`) via [timezonefinderL](https://timezonefinder.readthedocs.io/en/latest/1_usage.html#timezonefinderl): a fast and lightweight python package for looking up the corresponding timezone for given coordinates on earth entirely offline!
+- Or geographic coordinates (`latitude` and `longitude`) via [tzfpy](https://pypi.org/project/tzfpy/): a fast, dependency-free python package for looking up the corresponding timezone for given coordinates on earth entirely offline!
 
 This integration is useful for mobile installations (like vans, RVs or boats), or automations that require adjusting the system timezone based on location. Best of all, it does not require an internet connection.
 
@@ -70,7 +70,7 @@ If both are provided, `timezone` takes priority and coordinates will be ignored.
 
 ## 📝 Notes
 
-- Uses [`timezonefinderL`](https://timezonefinder.readthedocs.io/en/latest/1_usage.html#timezonefinderl) for fast and lightweight timezone lookup without an internet connection.
+- Uses [`tzfpy`](https://pypi.org/project/tzfpy/) (instead of `timezonefinder`, whose pinned `cffi<2` dependency conflicts with current Home Assistant and has no ARM wheels) for fast timezone lookup without an internet connection.
 - Service requires admin permissions.
 - Only updates the system timezone (does not affect individual users or devices).
 

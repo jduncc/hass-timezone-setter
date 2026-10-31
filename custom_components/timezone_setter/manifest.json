@@ -1,9 +1,9 @@
 {
   "domain": "timezone_setter",
   "name": "Timezone Setter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "documentation": "https://github.com/SmartyVan/hass-timezone-setter",
   "dependencies": [],
   "codeowners": ["@SmartyVan"],
-  "requirements": ["timezonefinder[lite]==6.5.9"]
+  "requirements": ["tzfpy>=2.0.0"]
 }

@@ -6,7 +6,7 @@ from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.service import async_register_admin_service
 
 import voluptuous as vol
-from timezonefinder import TimezoneFinderL
+from tzfpy import get_tz
 
 import logging
 
@@ -19,9 +19,6 @@ from .const import (
     ATTR_LATITUDE,
     ATTR_LONGITUDE,
 )
-
-# Instantiate once
-tf = TimezoneFinderL()
 
 def validate_timezone_or_coordinates(data):
     has_timezone = "timezone" in data
@@ -65,9 +62,9 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
             if lat is None or lon is None:
                 raise ValueError("You must provide either 'timezone' or both 'latitude' and 'longitude'")
 
-            tz = tf.timezone_at(lat=lat, lng=lon)
+            tz = get_tz(lon, lat)  # tzfpy takes longitude first
 
-            # Log the raw value returned from timezonefinder
+            # Log the raw value returned from tzfpy
             _LOGGER.info("Resolved timezone from lat/lon: %s", tz)
 
 
